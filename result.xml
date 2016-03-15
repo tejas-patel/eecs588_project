@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document SSLyzeVersion="0.13.4" SSLyzeWeb="https://github.com/nabla-c0d3/sslyze" title="SSLyze Scan Results">
+  <invalidTargets/>
+  <results networkMaxRetries="4" networkTimeout="5" totalScanTime="1.03838300705">
+    <target host="www.google.com" ip="216.58.214.196" port="443" tlsWrappedProtocol="plainTls">
+      <compression title="Deflate Compression">
+        <compressionMethod isSupported="False" type="DEFLATE"/>
+      </compression>
+    </target>
+  </results>
+</document>

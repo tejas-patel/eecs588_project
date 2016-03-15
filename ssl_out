@@ -1,0 +1,36 @@
+
+
+
+ AVAILABLE PLUGINS
+ -----------------
+
+  CertificateInfoPlugin
+  SessionResumptionPlugin
+  FallbackScsvPlugin
+  OpenSslCipherSuitesPlugin
+  SessionRenegotiationPlugin
+  HeartbleedPlugin
+  CompressionPlugin
+  HstsPlugin
+  OpenSslCcsInjectionPlugin
+
+
+
+ CHECKING HOST(S) AVAILABILITY
+ -----------------------------
+
+   www.google.com:443                       => 216.58.214.196 
+
+
+
+ SCAN RESULTS FOR WWW.GOOGLE.COM:443 - 216.58.214.196:443
+ --------------------------------------------------------
+
+  * Deflate Compression:
+                                         OK - Compression disabled
+
+
+
+ SCAN COMPLETED IN 1.15 S
+ ------------------------
+
