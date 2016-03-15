@@ -1,0 +1,1 @@
+cat scan.csv | parallel 'python sslyze_cli.py --compress {}:465  --xml_out - | python xml_parse.py '
