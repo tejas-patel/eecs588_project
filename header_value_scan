@@ -1,0 +1,1 @@
+cat scan.csv | parallel 'sh header.sh gzip {}'
