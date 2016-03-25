@@ -68,7 +68,26 @@ function getCookiePropertyHeader(e){
     }
   }
 }
+function getCookieValue(e){
+  for(var header of e){
+    if(header.name == "Cookie"){
+      return header.value;
+    }
+  }
+}
 
+function removeSameOrigin(cookieList, domain){
+    cookieKeyValue = cookieList.split("; ");
+    newCookieArray = [];
+    for(var i in cookieKeyValue){
+      keyValue = cookieKeyValue[i].split("=");
+      console.log("keyValue[0]="+keyValue[0]+" keyvalue[1]="+keyValue[1]);
+      if(!cookie_global[keyValue[0]] || cookie_global[keyValue[0]][domain]!="sameorigin"){
+        newCookieArray.push(cookieKeyValue[i]);
+      }
+    }
+    return newCookieArray.join("; ");
+}
 
 function setCookieProperty(e) {
   //console.log(e.responseHeaders["Content-Type"]);
@@ -93,11 +112,41 @@ function setCookieProperty(e) {
         }
       }
   }
+ 
   console.log(cookie_global);
 }
 
+function dropSameOriginCookie(e){
+  referer = getReferer(e.requestHeaders);
+  console.log("Referer:"+referer);
+  if(referer){
+    domainReferer = getDomainName(getHostname(referer));
+  } else{
+    domainReferer = undefined;
+  }
+  hostHeader = getHostHeader(e.requestHeaders);
+  domainHost = getDomainName(hostHeader);
+  console.log("Ref:"+domainReferer+" host:"+domainHost);
+  if(domainReferer && domainReferer!=domainHost && e.type!="main_frame"){
+    for(var header of e.requestHeaders){
+      if(header.name=="Cookie"){
 
+        cookieValue = header.value;
+        console.log("cookieValue:"+cookieValue);
+        modCookieValue = removeSameOrigin(cookieValue, domainHost);
+        header.value = modCookieValue;
+        console.log("Mod Cookie:"+modCookieValue);
+      }
+    }
+  }
+ 
+  return {requestHeaders: e.requestHeaders};
+
+}
 chrome.webRequest.onHeadersReceived.addListener(setCookieProperty,
                                           {urls: ["<all_urls>"]},
                                           [ "responseHeaders"]);
 
+chrome.webRequest.onBeforeSendHeaders.addListener(dropSameOriginCookie,
+                                          {urls: ["<all_urls>"]},
+                                          ["blocking", "requestHeaders"]);
