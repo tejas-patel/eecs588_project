@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/Tejas/Courses/EECS588/project/extension/cookie_drop"
+		}
+	],
+
+	"build_systems":
+[
+    {
+        "name": "compile",
+        "working_dir": "${project_path}",
+        "cmd": ["zip","-r"," $project_path.xpi *"]
+    }
+]
+}
