@@ -1,0 +1,33 @@
+{
+
+  "manifest_version": 2,
+  "name": "Preflight",
+  "version": "1.0",
+ 
+  "description": "Sends a preflight request before every cross-domain request",
+
+
+  "applications": {
+    "gecko": {
+      "id": "preflight@mozilla.org",
+      "strict_min_version": "45.0.1"
+    }
+  },
+
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking",
+    "http://www.hollerjohn.com",
+    "http://www.bookzz.org"
+  ],
+
+  "content_scripts": [
+    {
+            "js": ["background.js", "jquery.js"]
+    }
+  ]
+
+}

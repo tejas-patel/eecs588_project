@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "Safe Compress",
+  "version": "1.0",
+  "description": "Disable compression for cross site",
+  "icons": {
+    "48": "icons/off_logo_burned.png",
+    "96": "icons/off_logo_burned.png"
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "bookmark-it-extension@mozilla.org",
+      "strict_min_version": "45.0.1"
+    }
+  },
+
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+     "<all_urls>",
+     "http://www.google.com/"
+
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/off_logo_burned.png",
+    "default_title": "Decompress it!"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+
+}
